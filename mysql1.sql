@@ -7,8 +7,7 @@ create database db2;
 show databases;   # This statement shows the list of databases 
 drop database if exists DBEx1;  # This statement drops/deletes the database named DBEx1   
 create database DBEx1;  # This statement creates the database named DBEx1 
-use DBEx1;  -- Use the database DEBx1 we just create
-d 
+use DBEx1;  # Use the database DEBx1 we just created 
 show tables;  # This statement shows the list of tables in the database DEBx1 
 
 drop table if exists employees;  
