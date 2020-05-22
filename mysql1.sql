@@ -86,7 +86,62 @@ select e.IDN, sum(Salary) , CompanyCity
 from AddressCity a join employees e on (a.IDN=e.IDN)
 group by CompanyCity;
 
+#############################
+quiz 1
+Question 1
+Write a query statement to find the records of all employees with a salary of no less than $2500.
+Your Answer:
+select * from employees where salary >= 2500;
 
+
+Question 2
+Write a query statement to create a table named HighEarners containing the result of the query statement in question 1.
+Your Answer:
+create table HighEarners select * from employees where salary >=2500;
+
+                                                               
+Question 3
+Write a query statement to find the minimal, maximal, and total salary of all employees.
+Your Answer:
+select min(salary) as MinSalary, max(salary) as MaxSalary, sum(salary) as TotalSalary from employees;
+                                                               
+                                                               
+                                                               
+
+#############################                                                               
+quiz 2
+                                                               
+Question 1
+Write a query statement to find the salary, and balance of each employee with a salary between $1500 and $4500.
+Your Answer:
+SELECT
+   e.LName
+   , e.Salary
+   , IFNULL(i.Balance,0) Balance
+FROM
+   employees e LEFT JOIN
+   (SELECT IDN, SUM(Balance) Balance FROM IRAs GROUP BY IDN) i ON e.IDN = i.IDN
+WHERE
+   e.Salary BETWEEN 1500 and 4500;
+
+ 
+Question 2
+Find the last name, the total amount of ira balance, and number of ira accounts for each people with at most $300 IRA total balance. Summary Query for each people with certain conditions.
+Your Answer:
+SELECT
+   LName
+   , SUM(i.Balance) TotalBalance
+   , COUNT(i.IRA_acct) IRA_Accounts
+FROM
+   employees e INNER JOIN
+   IRAs i ON e.IDN = i.IDN
+GROUP BY
+   LName
+HAVING
+   SUM(i.Balance) <= 300;
+                                                               
+
+#############################                                                               
 Test1 
 
 Question 1
