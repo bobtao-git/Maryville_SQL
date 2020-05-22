@@ -227,3 +227,31 @@ select Lname, sum(Balance) as Total_IRA_Balance, count(IRA_Acct) as NumofAccts
 from employees e, iras i
 where e.idn = i.idn
 group by Lname having Total_IRA_Balance >=300;
+                                                               
+
+#############################                                                               
+quiz 3
+                                                               
+Question 1
+Write a query to create a table named TEmployees containing all records in the table Employees.
+Your Answer:
+CREATE TABLE TEmployees
+SELECT *
+FROM Employees;
+
+ 
+Question 2
+Write a query update statement to give a 15% raise for those employees in the table TEmployees with salary between $1000 and $3000.
+Your Answer:
+UPDATE TEmployees
+SET Salary = 1.15 * Salary
+WHERE Salary BETWEEN 1000 AND 3000;
+
+ 
+Question 3
+For the records in the table TEmployees, write a delete statement to delete the records with deductions no more than $20.
+Your Answer:
+DELETE
+FROM TEmployees
+WHERE Deduction <= 20;
+
