@@ -85,3 +85,90 @@ on(a.IDN=e.IDN) group by CompanyCity;
 select e.IDN, sum(Salary) , CompanyCity
 from AddressCity a join employees e on (a.IDN=e.IDN)
 group by CompanyCity;
+
+
+Test1 
+
+Question 1
+Find the last name and deduction of each employee with deduction at least $20.00.
+Your Answer:
+select Lname, Deduction
+from employees where Deduction >=20;
+
+ 
+Question 2
+Find the last name, deduction, and balance of each employee with a balance of at least $300.00.
+Your Answer:
+select Lname, Deduction, Balance
+from employees e, iras i
+where Balance >=300 and e.idn = i.idn;
+
+
+Question 3
+Find the last name, salary, IRA account balance, and the city name of the living address of each employee with a salary of at least $2,000.00.
+Your Answer:
+select Lname, Salary, Balance, Homecity
+from employees e, iras i, addresscity a
+where Salary >=2000 and e.idn = i.idn and i.idn = a.idn;
+
+
+Question 4
+Find the last name, salary, IRA account balance, and the city name of the living address of each employee with a balance between $100 and $400 and a salary of less than $3,000.00.
+Your Answer:
+select Lname, Salary, IRA_Acct, Balance, Homecity
+from employees e, iras i, addresscity a
+where (Balance between 100 and 400) and Salary <3000
+and e.idn = i.idn and i.idn = a.idn;
+
+ 
+Question 5
+Find the total amount of deduction of all people who work in each city and the city name of the working address.
+Your Answer:
+select CompanyCity, sum(Deduction) as TotalDeduction
+from employees e, addresscity a
+where e.idn = a.idn
+group by CompanyCity;
+
+ 
+Question 6
+Your Answer:
+select Lname, Deduction, sum(Balance) as Total_IRA_Balance
+from employees e, iras i
+where e.idn = i.idn
+group by Lname, Deduction;
+ 
+Question 7
+Find the last name, salary, number of ira accounts, and the city name of the living address for each employee.
+
+Your Answer:
+select Lname, Salary, count(IRA_Acct) as NumofAccts, Homecity
+from employees e, iras i, addresscity a
+where e.idn = i.idn and i.idn = a.idn
+group by Lname, Salary, Homecity;
+
+ 
+Question 8
+Find the total amount of salary of all people who work in each city together with the working city name.
+Your Answer:
+select CompanyCity, sum(Salary) as TotalSalary
+from addresscity a, employees e
+where a.idn = e.idn
+group by CompanyCity;
+
+ 
+Question 9
+Find the total amount of balance and the total number of all IRA accounts of those who live in each city together with the living address city name.
+Your Answer:
+select HomeCity, sum(Balance) as TotalBalance, count(IRA_Acct) as NumofAccts
+from addresscity a, iras i
+where a.idn = i.idn
+group by HomeCity;
+
+Question 10
+Find the last name, total amount of ira balance, and total number of ira accounts for each employee with at least $300 of the total amount of ira balance.
+
+Your Answer:
+select Lname, sum(Balance) as Total_IRA_Balance, count(IRA_Acct) as NumofAccts
+from employees e, iras i
+where e.idn = i.idn
+group by Lname having Total_IRA_Balance >=300;
