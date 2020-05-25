@@ -243,6 +243,9 @@ FROM Employees;
 Question 2
 Write a query update statement to give a 15% raise for those employees in the table TEmployees with salary between $1000 and $3000.
 Your Answer:
+                                                               
+# may need : SET SQL_SAFE_UPDATES = 0; #Stops error code 1175 from occuring
+
 UPDATE TEmployees
 SET Salary = 1.15 * Salary
 WHERE Salary BETWEEN 1000 AND 3000;
@@ -255,3 +258,4 @@ DELETE
 FROM TEmployees
 WHERE Deduction <= 20;
 
+                                                               
